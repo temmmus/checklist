@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <h1 class="header__title">TOD<Span class="header__letter">O</Span></h1>
+    <h1 class="header__title">TOD<span class="header__letter">O</span></h1>
   </header>
 </template>
 

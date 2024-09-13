@@ -2,7 +2,8 @@
   <Header />
   <Filters :active-filter="activeFilter" @set-filter="setFilter" />
   <List
-    :items="filteredItems"
+    :items="items"
+    :filtered-items="filteredItems"
     @toggle-item="toggleItem"
     @update-item="updateItem"
     @remove-item="removeItem"
@@ -65,6 +66,9 @@ export default defineComponent({
     updateItem(id: string, text: string) {
       const target = this.items.find((item: IItem) => item.id === id);
       if (target) target.text = text;
+    },
+    reorderItems(event: any) {
+      this.items = event;
     },
     setFilter(filter: TFilter) {
       this.activeFilter = filter;
