@@ -42,7 +42,8 @@ export default defineComponent({
 
 <style scoped>
 .add-item {
-  margin-top: 1rem;
+  display: flex;
+  height: 3rem;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
 }
@@ -53,10 +54,9 @@ export default defineComponent({
 }
 
 .add-item__form {
-  height: 2rem;
-  display: grid;
-  grid-template-columns: 1rem auto;
-  column-gap: 0.5rem;
+  display: flex;
+  align-content: center;
+  gap: 0.8rem;
 }
 
 .add-item__button:after {

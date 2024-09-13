@@ -57,10 +57,10 @@ export default defineComponent({
 
 <style scoped>
 .item {
-  height: 2rem;
+  height: 3rem;
   display: grid;
   grid-template-columns: 1rem auto 1rem;
-  column-gap: 0.5rem;
+  column-gap: 1rem;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
 }
@@ -75,7 +75,7 @@ export default defineComponent({
 }
 
 .item__checkbox {
-  transform: scale(1.5);
+  transform: scale(1.4);
   accent-color: #808080;
   cursor: pointer;
 }

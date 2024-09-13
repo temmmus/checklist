@@ -1,1 +1,1 @@
-export const INPUT_LENGTH = "30";
+export const INPUT_LENGTH = "20";
