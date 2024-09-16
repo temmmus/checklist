@@ -28,7 +28,7 @@ export default defineComponent({
     addItem() {
       this.$emit("addItem", {
         id: Date.now().toString(),
-        text: this.itemText,
+        text: this.itemText.trim(),
         completed: false,
       });
       this.itemText = "";
@@ -54,13 +54,25 @@ export default defineComponent({
 }
 
 .add-item__form {
-  display: flex;
-  align-content: center;
-  gap: 0.8rem;
+  display: grid;
+  grid-template-columns: 1rem 1rem 1fr;
+  gap: 1rem;
 }
 
+.add-item__button {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
 .add-item__button:after {
   color: yellow;
   content: "\002B";
+}
+
+.add-item__input {
+  grid-column: 3;
+  /* width: 100%; */
 }
 </style>

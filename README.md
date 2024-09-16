@@ -8,6 +8,7 @@ A simple task checklist application allows users to manage their tasks efficient
 - Mark tasks as completed
 - Remove tasks from the list
 - Filter tasks based on their status (All, Active, Done)
+- Sort tasks by dragging and dropping in the list
 
 ## Live Demo
 
