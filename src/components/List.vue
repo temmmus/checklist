@@ -1,6 +1,13 @@
 <template>
   <main class="main">
-    <draggable :list="items" item-key="id" @end="onReorderItems" tag="ul" class="main__list">
+    <draggable
+      :list="items"
+      :handle="'.drag-handle'"
+      item-key="id"
+      @end="onReorderItems"
+      tag="ul"
+      class="main__list"
+    >
       <template #item="{ element }">
         <Item
           v-if="filteredItems.includes(element)"
