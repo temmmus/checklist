@@ -45,14 +45,13 @@ export default defineComponent({
 
 <style scoped>
 .filters {
-  padding: 1rem 0 1rem 0;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
 
 .filters__button {
-  background: none;
   color: #808080;
   border: none;
   border-bottom: 2px solid transparent;

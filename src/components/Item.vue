@@ -87,6 +87,8 @@ export default defineComponent({
   column-gap: 1rem;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
+
+  align-items: center;
 }
 
 .item:focus,
@@ -100,7 +102,7 @@ export default defineComponent({
 }
 .item--done .item__input {
   color: #808080;
-  text-decoration: line-through 0.01rem solid;
+  text-decoration: line-through;
 }
 
 .drag-handle {
@@ -108,9 +110,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  margin: 0;
-  padding: 0;
   cursor: grab;
 }
 .drag-handle:active {
@@ -119,7 +118,8 @@ export default defineComponent({
 
 .item__checkbox {
   grid-column: 2;
-  transform: scale(1.4);
+  width: 1.4rem;
+  height: 1.4rem;
   accent-color: #808080;
   cursor: pointer;
 }
