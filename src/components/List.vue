@@ -76,10 +76,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.main__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-</style>
+<style scoped></style>

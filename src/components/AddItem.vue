@@ -61,10 +61,6 @@ export default defineComponent({
 
 .add-item__button {
   grid-column: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
 }
 .add-item__button:after {
   color: yellow;
@@ -73,6 +69,5 @@ export default defineComponent({
 
 .add-item__input {
   grid-column: 3;
-  /* width: 100%; */
 }
 </style>
