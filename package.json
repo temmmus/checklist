@@ -18,6 +18,7 @@
     "typescript": "5.2.2",
     "vite": "5.3.4",
     "vite-plugin-gh-pages": "1.0.0",
+    "vite-plugin-pwa": "0.20.5",
     "vue-tsc": "2.0.24"
   }
 }
