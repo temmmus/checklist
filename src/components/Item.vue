@@ -85,10 +85,9 @@ export default defineComponent({
   display: grid;
   grid-template-columns: 1rem 1rem 1fr 1rem;
   column-gap: 1rem;
+  align-items: center;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
-
-  align-items: center;
 }
 
 .item:focus,
