@@ -1,6 +1,7 @@
 {
   "name": "To-Do App",
   "short_name": "TODO",
+  "description": "A simple to-do list application",
   "icons": [
     {
       "src": "/favicon-assets/pwa-192x192.png",
@@ -29,6 +30,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF"
+  "background_color": "#323232",
+  "theme_color": "#323232"
 }
