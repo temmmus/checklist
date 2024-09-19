@@ -9,6 +9,7 @@ A simple task checklist application allows users to manage their tasks efficient
 - Remove tasks from the list
 - Filter tasks based on their status (All, Active, Done)
 - Sort tasks by dragging and dropping in the list
+- Progressive Web App (PWA) support – install the app on your device for offline access and a native app experience
 
 ## Live Demo
 
