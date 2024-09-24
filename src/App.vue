@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <Header @clear-list="clearList" />
   <Filters :active-filter="activeFilter" @set-filter="setFilter" />
   <List
     :items="items"
@@ -72,6 +72,9 @@ export default defineComponent({
     },
     setFilter(filter: TFilter) {
       this.activeFilter = filter;
+    },
+    clearList() {
+      this.items = [];
     },
   },
 });
