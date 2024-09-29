@@ -1,5 +1,5 @@
 <template>
-  <aside class="filters">
+  <aside class="filters" data-testid="filters">
     <button
       v-for="filter in filters"
       :key="filter"
