@@ -1,10 +1,11 @@
 <template>
-  <aside class="add-item">
+  <aside class="add-item" data-testid="add-item">
     <form class="add-item__form" @submit.prevent="addItem">
-      <button class="add-item__button" :disabled="!itemText"></button>
+      <button class="add-item__button" aria-label="add item button" :disabled="!itemText"></button>
       <input
         class="add-item__input"
-        placeholder="Add new item"
+        aria-label="add item input"
+        placeholder="Add item"
         :maxlength="inputLength"
         v-model="itemText"
       />
