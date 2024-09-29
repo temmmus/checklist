@@ -1,8 +1,11 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import { config } from "dotenv";
 import { ghPages } from "vite-plugin-gh-pages";
 import { VitePWA } from "vite-plugin-pwa";
 import { fileURLToPath, URL } from "node:url";
+
+config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,6 +14,9 @@ export default defineConfig({
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
+  },
+  server: {
+    port: Number(process.env.VITE_APP_PORT) || 4000,
   },
   plugins: [
     vue(),
