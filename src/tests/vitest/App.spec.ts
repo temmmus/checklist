@@ -64,7 +64,7 @@ describe("App component", () => {
       expect(newItem).toBeInTheDocument();
     });
 
-    it("Remove item from the list", async () => {
+    it("Remove an item from the list", async () => {
       const { getByPlaceholderText, getByRole, getAllByRole, queryByText } = render(App);
 
       const input = getByPlaceholderText("Add item");
