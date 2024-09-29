@@ -70,32 +70,32 @@ describe("App component", () => {
       const input = getByPlaceholderText("Add item");
       const addButton = getByRole("button", { name: "add item button" });
 
-      // Убеждаемся, что элемент ещё не добавлен
+      // Ensure that the item is not yet added
       expect(queryByText("Test item")).not.toBeInTheDocument();
 
-      // Добавляем новый элемент в список
+      // Add a new item to the list
       await fireEvent.update(input, "Test item");
       await fireEvent.click(addButton);
 
-      // Проверяем, что элемент добавлен в список
+      // Check that the item is added to the list
       const listItems = getAllByRole("listitem");
       const firstListItem = listItems[0];
       const { queryByRole } = within(firstListItem);
       const itemInput = queryByRole("textbox");
       expect(itemInput).toHaveValue("Test item");
 
-      // Убеждаемся, что кнопка удаления изначально отсутствует
+      // Ensure that the remove button is initially absent
       expect(queryByRole("button", { name: "" })).not.toBeInTheDocument();
 
-      // Эмулируем событие touchstart, чтобы показать кнопку удаления
+      // Simulate touchstart event to show the remove button
       await fireEvent.touchStart(itemInput);
       expect(queryByRole("button", { name: "" })).toBeInTheDocument();
 
-      // Нажимаем кнопку удаления
+      // Click the remove button
       const itemRemoveButton = queryByRole("button", { name: "" });
       await fireEvent.click(itemRemoveButton);
 
-      // Проверяем, что элемент был удален
+      // Check that the item has been removed
       expect(queryByText("Test item")).not.toBeInTheDocument();
     });
   });
