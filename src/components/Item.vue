@@ -1,5 +1,6 @@
 <template>
   <li
+    :id="'item-' + item.id"
     class="item"
     :class="{ 'item--done': item.completed }"
     @mouseover="isHovered = true"
@@ -7,18 +8,18 @@
   >
     <i class="fa fa-grip-vertical drag-handle" aria-hidden="true" v-if="isHovered || isFocused"></i>
     <input class="item__checkbox" type="checkbox" :checked="item.completed" @click="toggleItem" />
-    <input
+    <textarea
+      ref="textArea"
       class="item__input"
-      type="text"
+      placeholder="Item text"
       :maxlength="inputLength"
-      :value="item.text"
-      @input="updateItem"
-      ref="textInput"
+      v-model="item.text"
       @touchstart="
         isFocused = true;
         focusInput();
       "
       @touchend="isFocused = false"
+      @input="handleInput"
     />
     <button
       class="item__remove-button"
@@ -29,11 +30,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from "vue";
+import { defineComponent, nextTick, onMounted, PropType, ref } from "vue";
 import { INPUT_LENGTH } from "../shared/constants";
 import { IItem } from "../shared/interfaces";
 
 export default defineComponent({
+  name: "Item",
   props: {
     item: {
       type: Object as PropType<IItem>,
@@ -48,15 +50,29 @@ export default defineComponent({
     };
   },
   setup() {
-    const textInput = ref<HTMLInputElement | null>(null);
+    const textArea = ref<HTMLTextAreaElement | null>(null);
 
     const focusInput = () => {
-      if (textInput.value) textInput.value.focus();
+      if (textArea.value) textArea.value.focus();
     };
 
+    const autoResizeTextArea = () => {
+      nextTick(() => {
+        if (textArea.value) {
+          textArea.value.style.height = "55px"; // reset height
+          textArea.value.style.height = `${textArea.value.scrollHeight}px`; // set new height
+        }
+      });
+    };
+
+    onMounted(() => {
+      autoResizeTextArea();
+    });
+
     return {
-      textInput,
+      textArea,
       focusInput,
+      autoResizeTextArea,
     };
   },
   methods: {
@@ -70,6 +86,11 @@ export default defineComponent({
     removeItem() {
       this.$emit("removeItem", this.item.id);
     },
+    handleInput(event: Event) {
+      const target = event.target as HTMLTextAreaElement;
+      this.$emit("updateItem", this.item.id, target.value.trim());
+      this.autoResizeTextArea();
+    },
   },
   emits: {
     toggleItem: (id: string) => typeof id === "string",
@@ -81,7 +102,7 @@ export default defineComponent({
 
 <style scoped>
 .item {
-  height: 3rem;
+  height: auto;
   display: grid;
   grid-template-columns: 1rem 1rem 1fr 1rem;
   column-gap: 1rem;
@@ -98,6 +119,11 @@ export default defineComponent({
 
 .item__input {
   grid-column: 3;
+  width: 100%;
+  height: 50px;
+  padding-top: 12px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
 }
 .item--done .item__input {
   color: #808080;
