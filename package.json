@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "deploy": "vite build && vitest && vite-plugin-gh-pages",
+    "prebuild": "vitest",
+    "deploy": "vite build && vite-plugin-gh-pages",
     "preview": "vite preview",
-    "test": "vitest",
-    "test:playwright": "playwright test --headed",
-    "test:ci": "playwright test",
-    "test:dev": "start-server-and-test dev http://localhost:4000 test:playwright"
+    "test:unit": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:dev": "start-server-and-test dev http://localhost:4000 test:e2e:headed"
   },
   "dependencies": {
     "@playwright/test": "1.47.2",
