@@ -13,6 +13,7 @@
           v-if="filteredItems.includes(element)"
           :key="element.id"
           :item="element"
+          :ref="'item-' + element.id"
           @toggle-item="toggleItem"
           @update-item="updateItem"
           @remove-item="removeItem"
@@ -25,7 +26,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import draggable from "vuedraggable";
-import { IItem } from "../shared/interfaces";
+import { IItem, IItemInstance } from "../shared/interfaces";
 import Item from "./Item.vue";
 
 interface IReorderEvent {
@@ -52,9 +53,22 @@ export default defineComponent({
     },
     updateItem(id: string, text: string) {
       this.$emit("updateItem", id, text);
+      if (!text.length) this.removeItem(id);
     },
     removeItem(id: string) {
       this.$emit("removeItem", id);
+      const index = this.items.findIndex((item) => item.id === id);
+
+      this.$nextTick(() => {
+        const itemRefs = this.items.map((item) => this.$refs["item-" + item.id]) as IItemInstance[];
+
+        if (itemRefs.length > 0) {
+          const previousIndex = index - 1;
+          if (previousIndex >= 0 && itemRefs[previousIndex]) {
+            itemRefs[previousIndex].$refs.textInput.focus();
+          }
+        }
+      });
     },
     onReorderItems(event: IReorderEvent) {
       this.$emit("reorderItems", event);
