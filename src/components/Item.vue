@@ -151,6 +151,7 @@ export default defineComponent({
 
 .item__remove-button {
   grid-column: 4;
+  cursor: pointer;
 }
 .item__remove-button:after {
   content: "\00d7";

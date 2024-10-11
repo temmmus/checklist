@@ -1,5 +1,5 @@
 <template>
-  <aside class="add-item" data-testid="add-item">
+  <section class="add-item" data-testid="add-item">
     <form class="add-item__form" @submit.prevent="addItem">
       <button
         :class="{ 'add-item__button': true, 'button-disabled': !itemText }"
@@ -17,7 +17,7 @@
         @input="autoResizeTextArea"
       />
     </form>
-  </aside>
+  </section>
 </template>
 
 <script lang="ts">
@@ -104,10 +104,12 @@ export default defineComponent({
 .add-item__button:after {
   color: yellow;
   content: "\002B";
+  cursor: pointer;
 }
 
 .button-disabled:after {
   color: #808080;
+  cursor: default;
 }
 
 .add-item__input {

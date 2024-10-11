@@ -29,6 +29,7 @@ export default defineConfig({
         description: "A simple to-do list application",
         start_url: "/checklist/",
         display: "standalone",
+        orientation: "portrait-primary",
         background_color: "#323232",
         theme_color: "#323232",
         icons: [
