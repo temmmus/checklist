@@ -48,5 +48,6 @@ export default defineComponent({
 <style scoped>
 .header__letter {
   color: yellow;
+  cursor: pointer;
 }
 </style>

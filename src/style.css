@@ -21,13 +21,19 @@ body {
 }
 
 #app {
-  width: 360px;
+  width: 420px;
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
   background-color: #323232;
-  border-right: 2px solid yellow;
-  border-left: 2px solid yellow;
+  box-shadow: 0 0 25px rgba(255, 255, 0, 0.8);
+  animation: glowPulse 20s infinite ease-in-out;
+}
+
+@media only screen and (max-width: 768px) {
+  #app {
+    width: 100vw;
+  }
 }
 
 h1 {
@@ -74,4 +80,16 @@ button {
 
 i {
   font-size: 1.4rem;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 25px rgba(255, 255, 0, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(255, 255, 0, 0.8);
+  }
 }

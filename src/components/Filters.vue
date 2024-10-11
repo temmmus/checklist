@@ -1,5 +1,5 @@
 <template>
-  <aside class="filters" data-testid="filters">
+  <nav class="filters" data-testid="filters">
     <button
       v-for="filter in filters"
       :key="filter"
@@ -9,7 +9,7 @@
     >
       {{ filter }}
     </button>
-  </aside>
+  </nav>
 </template>
 
 <script lang="ts">
@@ -55,10 +55,11 @@ export default defineComponent({
   color: #808080;
   border: none;
   border-bottom: 2px solid transparent;
-  transition: color 0.25s, border-bottom 0.25s;
+  transition: color 0.5s, border-bottom 0.5s;
 }
 .filters__button:hover {
   color: yellow;
+  cursor: pointer;
 }
 
 .filters__button--active {
