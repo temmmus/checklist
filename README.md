@@ -14,7 +14,7 @@ A simple task checklist application allows users to manage their tasks efficient
 
 ## Live Demo
 
-You can view the live demo of this project on GitHub Pages: **<a href="https://temmmus.github.io/checklist" target="_blank">GitHub Pages Link</a>**
+You can view the live demo of this project on GitHub Pages: [GitHub Pages Link](https://temmmus.github.io/checklist)
 
 ## CI/CD
 
@@ -42,7 +42,7 @@ To run this project locally, follow these steps:
    ```
 4. Run the development server:
    ```bash
-   npm run dev
+    npm run dev
    ```
 5. Open your browser and go to link from console.
 
@@ -78,10 +78,10 @@ npm run test:e2e:dev
 
 ## Technologies
 
-- **<a href="https://vuejs.org/" target="_blank">Vue.js</a>**: A progressive JavaScript framework used to build the user interface.
-- **<a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>**: A superset of JavaScript that adds static types.
-- **<a href="https://vite.dev/" target="_blank">Vite</a>**: A build tool and development server that provides fast hot module replacement.
-- **<a href="https://vitest.dev/" target="_blank">Vitest</a>**: A unit testing framework optimized for Vite.
-- **<a href="https://playwright.dev/" target="_blank">Playwright</a>**: A framework for end-to-end testing that supports multiple browsers.
-- **<a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML</a>**: Markup language for structuring web pages.
-- **<a href="https://www.w3.org/Style/CSS/" target="_blank">CSS</a>**: Stylesheet language for styling web pages.
+- **[Vue.js](https://vuejs.org/)**: A progressive JavaScript framework used to build the user interface.
+- **[TypeScript](https://www.typescriptlang.org/)**: A superset of JavaScript that adds static types.
+- **[Vite](https://vitejs.dev/)**: A build tool and development server that provides fast hot module replacement.
+- **[Vitest](https://vitest.dev/)**: A unit testing framework optimized for Vite.
+- **[Playwright](https://playwright.dev/)**: A framework for end-to-end testing that supports multiple browsers.
+- **[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)**: Markup language for structuring web pages.
+- **[CSS](https://www.w3.org/Style/CSS/)**: Stylesheet language for styling web pages.
