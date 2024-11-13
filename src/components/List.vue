@@ -17,6 +17,7 @@
           @toggle-item="toggleItem"
           @update-item="updateItem"
           @remove-item="removeItem"
+          @add-item-after="addItemAfter"
         />
       </template>
     </draggable>
@@ -52,23 +53,54 @@ export default defineComponent({
       this.$emit("toggleItem", id);
     },
     updateItem(id: string, text: string) {
-      this.$emit("updateItem", id, text);
-      if (!text.length) this.removeItem(id);
+      if (!text.length) {
+        this.focusPreviousItem(id);
+        this.removeItem(id);
+      } else {
+        this.$emit("updateItem", id, text);
+      }
     },
     removeItem(id: string) {
       this.$emit("removeItem", id);
-      const index = this.items.findIndex((item) => item.id === id);
+    },
+    addItemAfter(currentItemId: string) {
+      const index = this.items.findIndex((item) => item.id === currentItemId);
+      const newItem: IItem = {
+        id: Date.now().toString(),
+        text: "",
+        completed: false,
+      };
 
+      this.items.splice(index + 1, 0, newItem); // add new item to array
+
+      // set focus to new item
       this.$nextTick(() => {
-        const itemRefs = this.items.map((item) => this.$refs["item-" + item.id]) as IItemInstance[];
-
-        if (itemRefs.length > 0) {
-          const previousIndex = index - 1;
-          if (previousIndex >= 0 && itemRefs[previousIndex]) {
-            itemRefs[previousIndex].$refs.textInput.focus();
-          }
+        const newItemRef = this.$refs[`item-${newItem.id}`] as IItemInstance;
+        if (newItemRef) {
+          const textArea = newItemRef.$refs.textArea as HTMLTextAreaElement;
+          textArea.focus();
         }
       });
+
+      const currentItemRef = this.$refs[`item-${currentItemId}`] as IItemInstance;
+      if (currentItemRef) currentItemRef.removeFocus();
+    },
+    focusPreviousItem(currentItemId: string) {
+      const index = this.items.findIndex((item) => item.id === currentItemId);
+
+      if (index > 0) {
+        const previousItemId = this.items[index - 1].id;
+        const previousItemRef = this.$refs[`item-${previousItemId}`] as IItemInstance;
+        const textArea = previousItemRef.$refs.textArea as HTMLTextAreaElement;
+
+        this.$nextTick(() => {
+          setTimeout(() => {
+            textArea.focus();
+            const length = textArea.value.length;
+            textArea.setSelectionRange(length, length);
+          }, 0); // Minimal timeout for mobile devices
+        });
+      }
     },
     onReorderItems(event: IReorderEvent) {
       this.$emit("reorderItems", event);

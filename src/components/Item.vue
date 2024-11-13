@@ -3,10 +3,10 @@
     :id="'item-' + item.id"
     class="item"
     :class="{ 'item--done': item.completed }"
-    @mouseover="isHovered = true"
-    @mouseleave="isHovered = false"
+    @mouseover="isFocused = true"
+    @mouseleave="isFocused = false"
   >
-    <i class="fa fa-grip-vertical drag-handle" aria-hidden="true" v-if="isHovered || isFocused"></i>
+    <i class="fa fa-grip-vertical drag-handle" aria-hidden="true" v-if="isFocused"></i>
     <input class="item__checkbox" type="checkbox" :checked="item.completed" @click="toggleItem" />
     <textarea
       ref="textArea"
@@ -19,13 +19,11 @@
         focusInput();
       "
       @touchend="isFocused = false"
-      @input="handleInput"
+      @blur="trimText"
+      @input="updateItem"
+      @keydown="handleKeyDown"
     />
-    <button
-      class="item__remove-button"
-      v-if="isHovered || isFocused"
-      @click.stop="removeItem"
-    ></button>
+    <button class="item__remove-button" v-if="isFocused" @click.stop="removeItem"></button>
   </li>
 </template>
 
@@ -44,7 +42,6 @@ export default defineComponent({
   },
   data() {
     return {
-      isHovered: false,
       isFocused: false,
       inputLength: INPUT_LENGTH,
     };
@@ -81,21 +78,36 @@ export default defineComponent({
     },
     updateItem(e: Event) {
       const target = e.target as HTMLInputElement;
-      this.$emit("updateItem", this.item.id, target.value.trim());
+      this.$emit("updateItem", this.item.id, target.value);
+      this.autoResizeTextArea();
+    },
+    trimText() {
+      this.item.text = this.item.text
+        .split("\n")
+        .map((line) => line.trim())
+        .filter((line) => line !== "")
+        .join("\n");
+      this.$emit("updateItem", this.item.id, this.item.text);
+      this.autoResizeTextArea();
     },
     removeItem() {
       this.$emit("removeItem", this.item.id);
     },
-    handleInput(event: Event) {
-      const target = event.target as HTMLTextAreaElement;
-      this.$emit("updateItem", this.item.id, target.value.trim());
-      this.autoResizeTextArea();
+    handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        this.$emit("addItemAfter", this.item.id);
+      }
+    },
+    removeFocus() {
+      this.isFocused = false;
     },
   },
   emits: {
     toggleItem: (id: string) => typeof id === "string",
     updateItem: (id: string, text: string) => typeof id === "string" && typeof text === "string",
     removeItem: (id: string) => typeof id === "string",
+    addItemAfter: (id: string) => typeof id === "string",
   },
 });
 </script>

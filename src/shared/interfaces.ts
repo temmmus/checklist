@@ -8,6 +8,7 @@ export interface IItemInstance {
   $refs: {
     textInput: HTMLInputElement;
   };
+  removeFocus: () => void;
 }
 
 export interface IFilter {
